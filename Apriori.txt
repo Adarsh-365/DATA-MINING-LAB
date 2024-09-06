@@ -1,8 +1,8 @@
 T1 a b c
-T2 b d
+T2 b d a
 T3 d c
-T4 a b 
+T4 a b c
 T5 e b c
 T6 a b 
-T7 a d c
-T8 b c
+T7 a d c e
+T8 b c a 
