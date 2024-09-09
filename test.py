@@ -2,21 +2,6 @@ import numpy as np
 
 
 
-def Candidate_generate(Fk,k):
-    candidate_set = []
-    for i in range(len(Fk)-1):
-        for j in range(i+1,len(Fk)):
-                k = len(Fk)
-                set1 = np.union1d(np.array(Fk[i]),np.array(Fk[j]))
-               
-                if len(set1)==k+1:
-                    
-                    candidate_set.append(set1)
-                
-    
-    return  candidate_set
-
-
 with open("data.txt", "r") as f:
     data =   f.readlines()
 
@@ -26,16 +11,14 @@ for tras in data:
     Dict1[str(transc[0])]=np.array(transc[1:])
 
 
-# itemset = []
-# itemset_count = {}
-# freq_itemset = []
+
 min_sup = 2
 m = 2
 total_trans =len(Dict1)
 
 
 DC = []
-SC =  []
+SC = []
 DS = []
 SS = []
 count = 0
@@ -46,10 +29,11 @@ k = 1
 itemset_count = {}
 
 frequent_itemset = []
+
 while(len(DC)!=0 or k==1):
     
-    while(count!=total_trans):
-        Dict2 = {}
+    while(count<=total_trans):
+        
         if k==1:
             for key in list_of_key[a:b]:
                 trans = Dict1[key]
@@ -81,7 +65,7 @@ while(len(DC)!=0 or k==1):
                             itemset_count[str(item)]+=1
                 # for item in DC:
                     
-                        print(itemset_count)
+                        
                         if itemset_count[str(item)]>=min_sup:
                             
                                 if not any(np.array_equal(item,arr) for arr in DS):
@@ -99,12 +83,20 @@ while(len(DC)!=0 or k==1):
                  
         count+=m
         a=b
-        b=b+m
+        
+        if (count+m)>total_trans:
+            b = b+total_trans-count
+        else:
+            b = b+m
+        print(b)
     
     k = k+1   
     count = 0
+    
     a = 0
-    b = 2  
+     
+    b = 2
+    
     SC =  []
     
     SS = []
@@ -138,14 +130,10 @@ while(len(DC)!=0 or k==1):
 
                     
             
-print("==========")        
-print("SC = ",SC)         
 
 
-print("DC = ",DC)
 print("frequent_itemset = ",frequent_itemset)
-print("SS = ",SS)  
-print(itemset_count)
+
 
 
 
