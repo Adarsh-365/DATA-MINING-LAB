@@ -88,7 +88,7 @@ while(len(DC)!=0 or k==1):
             b = b+total_trans-count
         else:
             b = b+m
-        print(b)
+        
     
     k = k+1   
     count = 0
