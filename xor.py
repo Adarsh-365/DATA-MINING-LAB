@@ -64,3 +64,18 @@ for i in range(epochs):
         
 
 print(predicted_op)
+
+print(predicted_output)
+def predict(X_new):
+    hidden_layer_input = np.dot(X_new, weights_input_hidden) + bias_hidden
+    hidden_layer_output = sigmoid(hidden_layer_input)
+    
+    output_layer_input = np.dot(hidden_layer_output, weights_hidden_output) + bias_output
+    predicted_output = sigmoid(output_layer_input)
+    
+    return predicted_output
+
+# Testing the trained network with XOR inputs
+print("Predictions after training:")
+for x in X:
+    print(f"Input: {x}, Predicted Output: {predict(x)}")
